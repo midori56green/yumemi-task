@@ -7,11 +7,20 @@
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
+import { getApi } from "./common.js";
 
 export default {
+  data() {
+    return {
+      hoge: getApi,
+    };
+  },
   name: "App",
   components: {
     HelloWorld,
+  },
+  created() {
+    console.log(this.hoge);
   },
 };
 </script>
