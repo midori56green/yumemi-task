@@ -10,9 +10,9 @@ import HelloWorld from "./components/HelloWorld.vue";
 import { getApi } from "./common.js";
 
 export default {
-  data() {
+  async data() {
     return {
-      hoge: getApi,
+      hoge: await getApi(),
     };
   },
   name: "App",
