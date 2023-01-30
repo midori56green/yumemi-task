@@ -1,6 +1,4 @@
 // const endPoint = 'https://opendata.resas-portal.go.jp/api/;'
-const getApi = 'hoge';
+const getApi = "hoge";
 
-export {
-    getApi
-}
+export { getApi };
