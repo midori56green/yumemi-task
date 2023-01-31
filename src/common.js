@@ -1,28 +1,18 @@
-// const endPoint = 'http://api.skilljapan.info/api/';
 const endPoint = "https://opendata.resas-portal.go.jp/api/";
 
-const requestResponse = async (uri, method, postData = false) => {
-  try {
-    const headers = {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    };
-    let json = {
-      method: method,
-      headers: headers,
-    };
-    if (postData) {
-      json.body = JSON.stringify(postData);
-    }
-
-    return await fetch(endPoint + uri, json);
-  } catch (error) {
-    return error;
+async function getApi() {
+  const headerJson = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json;charset=UTF-8",
+      "X-API-KEY": "xxxxxxx",
+    },
+  };
+  const uri = "v1/prefectures";
+  const response = await fetch(endPoint + uri, headerJson);
+  if (response.ok) {
+    return await response.json();
   }
-};
-
-const getApi = async (uri, postData = false) => {
-  return requestResponse(uri, "get", postData);
-};
+}
 
 export { getApi };

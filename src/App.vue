@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
+    <p>hoge:{{ hoge }}</p>
+    <p>fuge:{{ fuge }}</p>
+    <input type="text" v-model="fuge" />
+    <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
     <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
 </template>
@@ -10,17 +13,19 @@ import HelloWorld from "./components/HelloWorld.vue";
 import { getApi } from "./common.js";
 
 export default {
-  async data() {
+  data() {
     return {
-      hoge: await getApi(),
+      hoge: [],
+      fuge: "aaa",
     };
   },
   name: "App",
   components: {
     HelloWorld,
   },
-  created() {
-    console.log(this.hoge);
+  async created() {
+    this.hoge = await getApi();
+    console.log(this.hoge.result);
   },
 };
 </script>
