@@ -1,11 +1,13 @@
+import { config } from "./apikey.js";
 const endPoint = "https://opendata.resas-portal.go.jp/api/";
+const apiKey = config.apikey;
 
 async function getApi() {
   const headerJson = {
     method: "GET",
     headers: {
       "Content-Type": "application/json;charset=UTF-8",
-      "X-API-KEY": "xxxxxxx",
+      "X-API-KEY": apiKey,
     },
   };
   const uri = "v1/prefectures";
