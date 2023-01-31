@@ -13,7 +13,8 @@ async function getApi() {
   const uri = "v1/prefectures";
   const response = await fetch(endPoint + uri, headerJson);
   if (response.ok) {
-    return await response.json();
+    const api = await response.json();
+    return api.result;
   }
 }
 
