@@ -25,7 +25,7 @@ export default {
   },
   async created() {
     this.hoge = await getApi();
-    console.log(this.hoge.result);
+    console.log(this.hoge.statusCode);
   },
 };
 </script>
