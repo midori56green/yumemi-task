@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <p>hoge: {{ prefectures[0] }}</p>
+    <p>hoge: {{ prefectures }}</p>
   </div>
 </template>
 
@@ -18,7 +18,7 @@ export default {
     };
   },
   async created() {
-    this.prefectures = await getApi("");
+    this.prefectures = await getApi("v1/prefectures");
   },
 };
 </script>

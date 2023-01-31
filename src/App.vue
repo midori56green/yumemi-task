@@ -1,33 +1,23 @@
 <template>
   <div id="app">
     <h1>Title</h1>
-    <!-- <p>hoge:{{ hoge.result }}</p> -->
     <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
     <PrefectureList msg="Welcome to Your Vue.js App" />
   </div>
 </template>
 
 <script>
-// import HelloWorld from "./components/HelloWorld.vue";
 import PrefectureList from "./components/PrefectureList.vue";
-// import HelloWorld from "./components/PrefectureList.vue";
-// import { getApi } from "./common.js";
 
 export default {
   data() {
-    return {
-      // hoge: [],
-    };
+    return {};
   },
   name: "App",
   components: {
-    // HelloWorld,
     PrefectureList,
   },
-  async created() {
-    // this.hoge = await getApi();
-  },
+  async created() {},
 };
 </script>
 
