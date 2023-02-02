@@ -1,7 +1,6 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>hoge: {{ prefectures }}</p>
+  <div class="box">
+    <h2>都道府県一覧</h2>
   </div>
 </template>
 
@@ -9,9 +8,6 @@
 import { getApi } from "../common.js";
 export default {
   name: "PrefectureList",
-  props: {
-    msg: String,
-  },
   data() {
     return {
       prefectures: [],
