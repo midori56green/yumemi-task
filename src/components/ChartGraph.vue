@@ -20,10 +20,12 @@ export default {
         datasets: [
           {
             data: [485, 414, 71, 105],
+            label: "apple",
             backgroundColor: ["#F50057"],
           },
           {
             data: [20, 50, 200, 400],
+            label: "banana",
             backgroundColor: ["#0f0"],
           },
         ],
