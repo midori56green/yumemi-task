@@ -1,3 +1,4 @@
+<script>
 // import { Bar } from "vue-chartjs";
 import { getApi } from "@/common";
 export default {
@@ -15,3 +16,4 @@ export default {
     // this.renderCart(this.prefectures, option);
   },
 };
+</script>
