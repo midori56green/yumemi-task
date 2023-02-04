@@ -1,18 +1,20 @@
 <template>
   <div class="graph">
     <h2>グラフ</h2>
-    <vue-highcharts />
   </div>
 </template>
 
 <script>
+// import { Bar } from "vue-chartjs";
 export default {
+  // extends: Bar,
   name: "PopulationGraph",
   data() {
     return {};
   },
-  created() {},
-  methods: {},
+  mounted() {
+    // this.renderCart(data, option);
+  },
 };
 </script>
 
