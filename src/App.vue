@@ -4,25 +4,31 @@
     <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
     <!-- <PopulationGraph msg="Welcome to Your Vue.js App" /> -->
     <PrefectureList />
-    <!-- <PopulationGraph /> -->
+    <ChartGraph :chart-data="sampleJson" />
   </div>
 </template>
 
 <script>
-// import { getApi } from "./common";
 import PrefectureList from "./components/PrefectureList.vue";
-// import PopulationGraph from "./components/ChartGraph.js";
+import ChartGraph from "./components/ChartGraph.vue";
+import { getApi } from "./common";
 
 export default {
   data() {
-    return {};
+    return {
+      sampleJson: [],
+    };
   },
   name: "App",
   components: {
     PrefectureList,
-    // PopulationGraph,
+    ChartGraph,
   },
-  async created() {},
+  async created() {
+    this.sampleJson = await getApi(
+      "v1/population/composition/perYear?cityCode=11362&prefCode=11"
+    );
+  },
 };
 </script>
 

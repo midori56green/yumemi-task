@@ -1,6 +1,7 @@
 <template>
   <div class="box">
     <h2>都道府県一覧</h2>
+    <p>{{ prefectures[0] }}</p>
   </div>
 </template>
 
