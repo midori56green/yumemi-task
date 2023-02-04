@@ -14,13 +14,17 @@ export default {
   mounted() {
     // グラフ作成
     new Chart("locationGraph", {
-      type: "doughnut",
+      type: "line",
       data: {
         labels: ["ユーザ―A", "ユーザ―B", "ユーザ―C", "ユーザ―D"],
         datasets: [
           {
             data: [485, 414, 71, 105],
-            backgroundColor: ["#F50057", "#FF4081", "#FF80AB", "#FFCC80"],
+            backgroundColor: ["#F50057"],
+          },
+          {
+            data: [20, 50, 200, 400],
+            backgroundColor: ["#0f0"],
           },
         ],
         min: 0,
@@ -32,11 +36,11 @@ export default {
           legend: {
             display: true,
             position: "bottom",
+            labelString: "apple",
           },
         },
       },
     });
-    // console.log(graph);
   },
 };
 </script>
