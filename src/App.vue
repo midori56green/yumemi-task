@@ -4,13 +4,14 @@
     <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
     <!-- <PopulationGraph msg="Welcome to Your Vue.js App" /> -->
     <PrefectureList />
-    <PopulationGraph />
+    <!-- <PopulationGraph /> -->
   </div>
 </template>
 
 <script>
+// import { getApi } from "./common";
 import PrefectureList from "./components/PrefectureList.vue";
-import PopulationGraph from "./components/PopulationGraph.vue";
+// import PopulationGraph from "./components/ChartGraph.js";
 
 export default {
   data() {
@@ -19,7 +20,7 @@ export default {
   name: "App",
   components: {
     PrefectureList,
-    PopulationGraph,
+    // PopulationGraph,
   },
   async created() {},
 };

@@ -4,9 +4,19 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
+  state: {
+    // prefectures: [],
+  },
   getters: {},
-  mutations: {},
-  actions: {},
+  mutations: {
+    // setPrefectures(state, json) {
+    //   state.getPrefectures = json;
+    // },
+  },
+  actions: {
+    // getPrefectures(json) {
+    //   json.commit("setPrefectures");
+    // },
+  },
   modules: {},
 });
