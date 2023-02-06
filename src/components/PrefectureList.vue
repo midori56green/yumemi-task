@@ -1,7 +1,20 @@
 <template>
   <div class="box">
     <h2>都道府県一覧</h2>
-    <p>{{ prefectures[0] }}</p>
+    <ul>
+      <li v-if="prefectures.length === 0">読み込み中</li>
+      <li v-for="(prefecture, index) in prefectures" :key="index">
+        <label :for="`prefecture-${prefecture.prefCode}`">
+          <input
+            type="checkbox"
+            :id="`prefecture-${prefecture.prefCode}`"
+            v-model="selectPrefectures"
+            :value="prefecture.prefCode"
+          />
+          {{ prefecture.prefName }}
+        </label>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -12,10 +25,17 @@ export default {
   data() {
     return {
       prefectures: [],
+      selectPrefectures: [],
     };
   },
   async created() {
     this.prefectures = await getApi("v1/prefectures");
+    console.log(this.selectPrefectures);
+  },
+  watch: {
+    selectPrefectures() {
+      console.log(this.selectPrefectures);
+    },
   },
 };
 </script>
