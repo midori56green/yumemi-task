@@ -3,8 +3,8 @@
     <h1>Title</h1>
     <ul>
       <li v-if="sampleJson.length === 0">読み込み中</li>
-      <li v-for="(json, index) in sampleJson.data[0].data" :key="index">
-        {{ json.year }}年 {{ json.value }}人
+      <li v-for="(json, index) in sampleJson.data" :key="index">
+        {{ json.label }}
       </li>
     </ul>
     <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
@@ -35,7 +35,7 @@ export default {
     this.sampleJson = await getApi(
       "v1/population/composition/perYear?cityCode=-&prefCode=11"
     );
-    console.log(this.sampleJson);
+    // console.log(this.sampleJson);
     // const prefectures = await getApi("v1/prefectures");
     // Store.dispatch("setPrefectures", prefectures);
   },

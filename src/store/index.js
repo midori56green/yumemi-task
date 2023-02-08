@@ -6,18 +6,24 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     prefectures: [],
+    selectPrefectures: [],
   },
-  getters: {},
+  getters: {
+    getPrefecture(state) {
+      return state.prefectures;
+    },
+    getSelectPrefecture(state) {
+      return state.setPrefecture;
+    },
+  },
   mutations: {
-    setPrefectures(state, json) {
-      state.getPrefectures = json;
+    setPrefecture(state, json) {
+      state.prefectures = json;
+    },
+    setSelectPrefecture(state, json) {
+      state.selectPrefectures = json;
     },
   },
-  actions: {
-    setPrefectures(json) {
-      // console.log("action");
-      json.commit("setPrefectures");
-    },
-  },
+  actions: {},
   modules: {},
 });

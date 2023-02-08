@@ -30,11 +30,11 @@ export default {
   },
   async created() {
     this.prefectures = await getApi("v1/prefectures");
-    console.log(this.selectPrefectures);
+    console.log(this.$store.getters.getTest);
   },
   watch: {
     selectPrefectures() {
-      console.log(this.selectPrefectures);
+      this.$store.commit("setPrefecture", this.selectPrefectures);
     },
   },
 };
