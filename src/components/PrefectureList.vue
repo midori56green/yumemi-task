@@ -30,7 +30,6 @@ export default {
   },
   async created() {
     this.prefectures = await getApi("v1/prefectures");
-    console.log(this.$store.getters.getTest);
   },
   watch: {
     selectPrefectures() {
