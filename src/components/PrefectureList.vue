@@ -33,7 +33,7 @@ export default {
   },
   watch: {
     selectPrefectures() {
-      this.$store.commit("setPrefecture", this.selectPrefectures);
+      this.$store.commit("setSelectPrefecture", this.selectPrefectures);
     },
   },
 };
