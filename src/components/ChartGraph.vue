@@ -1,11 +1,5 @@
 <template>
-  <canvas
-    v-if="datasets"
-    id="populationGraph"
-    width="300"
-    height="200"
-    class="ma-3 pa-3 grey lighten-5"
-  ></canvas>
+  <canvas id="populationGraph" width="300" height="200"></canvas>
 </template>
 
 <script>
@@ -13,12 +7,14 @@ import { getApi } from "@/common";
 import Chart from "chart.js/auto";
 export default {
   name: "ChartGraph",
+  props: ["sample"],
   data() {
     return {
       selectPrefectures: [
         {
           prefName: "北海道",
           prefCode: 1,
+          backgroundColor: "#00ff00",
         },
         {
           prefName: "青森",
@@ -35,6 +31,7 @@ export default {
     };
   },
   async created() {
+    console.log(this.sample);
     // グラフデータの取得
     this.getPopulationJson();
 
@@ -49,8 +46,37 @@ export default {
   },
   async mounted() {
     // グラフ作成
-    console.log(this.datasets);
-    if (this.datasets) await this.drawChart(this.datasets, this.labels);
+    new Chart("populationGraph", {
+      type: "line",
+      data: {
+        labels: this.labels,
+        // datasets: [
+        //   {
+        //     data: [485, 414, 71, 105],
+        //     label: "apple",
+        //     backgroundColor: ["#F50057"],
+        //   },
+        //   {
+        //     data: [20, 50, 200, 400],
+        //     label: "banana",
+        //     backgroundColor: ["#0f0"],
+        //   },
+        // ],
+        datasets: this.datasets,
+        min: 0,
+        max: 100,
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: true,
+            position: "bottom",
+            labelString: "apple",
+          },
+        },
+      },
+    });
   },
   methods: {
     // 人口データの取得
@@ -76,40 +102,6 @@ export default {
         });
       });
       // console.log(this.datasets);
-    },
-    // グラフの描画
-    drawChart(datasets, labels) {
-      new Chart("populationGraph", {
-        type: "line",
-        data: {
-          labels: labels,
-          // datasets: [
-          //   {
-          //     data: [485, 414, 71, 105],
-          //     label: "apple",
-          //     backgroundColor: ["#F50057"],
-          //   },
-          //   {
-          //     data: [20, 50, 200, 400],
-          //     label: "banana",
-          //     backgroundColor: ["#0f0"],
-          //   },
-          // ],
-          datasets: datasets,
-          min: 0,
-          max: 100,
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              display: true,
-              position: "bottom",
-              labelString: "apple",
-            },
-          },
-        },
-      });
     },
   },
 };

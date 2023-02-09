@@ -3,16 +3,16 @@
     <h1>Title</h1>
     <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
     <!-- <PopulationGraph msg="Welcome to Your Vue.js App" /> -->
-    <random-chart />
-    <ChartGraph />
+    <ChartGraph sample="aaaaaa" />
     <PrefectureList />
   </div>
 </template>
 
 <script>
+import { getApi } from "./common";
 import PrefectureList from "./components/PrefectureList.vue";
 import ChartGraph from "./components/ChartGraph.vue";
-import RandomChart from "./components/RandomChart.vue";
+// import RandomChart from "./components/RandomChart.vue";
 
 export default {
   data() {
@@ -22,9 +22,45 @@ export default {
   components: {
     PrefectureList,
     ChartGraph,
-    RandomChart,
+    // RandomChart,
   },
   async created() {},
+  methods: {
+    // 人口データの取得
+    async getPopulationJson() {
+      this.selectPrefectures.forEach(async (prefDate) => {
+        const populationData = await getApi(
+          `v1/population/composition/perYear?cityCode=-&prefCode=${prefDate.prefCode}`
+        );
+
+        // 境界年の取得
+        if (this.boundaryYear === 0) {
+          this.boundaryYear = populationData.boundaryYear;
+        }
+
+        const popuationDataset = [];
+        populationData.data[0].data.forEach((data) => {
+          // 境界年以前のデータを取得
+          if (data.year <= this.boundaryYear) popuationDataset.push(data.value);
+        });
+        this.datasets.push({
+          data: popuationDataset,
+          label: prefDate.prefName,
+        });
+      });
+      // console.log(this.datasets);
+    },
+  },
+  computed: {
+    setSelectPrefecture() {
+      return this.$store.getters.getSelectPrefecture;
+    },
+  },
+  watch: {
+    setSelectPrefecture(data) {
+      console.log(data);
+    },
+  },
 };
 </script>
 
