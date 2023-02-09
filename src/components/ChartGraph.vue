@@ -1,13 +1,13 @@
 <template>
   <div>
-    <canvas id="populationGraph" width="300" height="200"></canvas>
+    <!-- <canvas id="populationGraph" width="300" height="200"></canvas> -->
     <line-chart v-if="datacollection" :chart-data="datacollection"></line-chart>
   </div>
 </template>
 
 <script>
 import LineChart from "./LineChart.js";
-import Chart from "chart.js/auto";
+// import Chart from "chart.js/auto";
 export default {
   data() {
     return {
@@ -24,37 +24,37 @@ export default {
     this.fillData();
 
     // グラフ作成
-    new Chart("populationGraph", {
-      type: "line",
-      data: {
-        labels: this.labels,
-        // datasets: [
-        //   {
-        //     data: [485, 414, 71, 105],
-        //     label: "apple",
-        //     backgroundColor: ["#F50057"],
-        //   },
-        //   {
-        //     data: [20, 50, 200, 400],
-        //     label: "banana",
-        //     backgroundColor: ["#0f0"],
-        //   },
-        // ],
-        datasets: this.datasets,
-        min: 0,
-        max: 100,
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: true,
-            position: "bottom",
-            labelString: "apple",
-          },
-        },
-      },
-    });
+    // new Chart("populationGraph", {
+    //   type: "line",
+    //   data: {
+    //     labels: this.labels,
+    //     // datasets: [
+    //     //   {
+    //     //     data: [485, 414, 71, 105],
+    //     //     label: "apple",
+    //     //     backgroundColor: ["#F50057"],
+    //     //   },
+    //     //   {
+    //     //     data: [20, 50, 200, 400],
+    //     //     label: "banana",
+    //     //     backgroundColor: ["#0f0"],
+    //     //   },
+    //     // ],
+    //     datasets: this.datasets,
+    //     min: 0,
+    //     max: 100,
+    //   },
+    //   options: {
+    //     responsive: true,
+    //     plugins: {
+    //       legend: {
+    //         display: true,
+    //         position: "bottom",
+    //         labelString: "apple",
+    //       },
+    //     },
+    //   },
+    // });
   },
   methods: {
     fillData() {
