@@ -15,7 +15,7 @@ export default new Vuex.Store({
     },
     // 選択された都道府県リストの取得
     getSelectPrefecture(state) {
-      return state.selectPrefectures;
+      return state.setPrefecture;
     },
   },
   mutations: {

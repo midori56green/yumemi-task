@@ -11,7 +11,6 @@
 <script>
 import { getApi } from "@/common";
 import Chart from "chart.js/auto";
-
 export default {
   name: "ChartGraph",
   data() {
@@ -48,10 +47,10 @@ export default {
       if (data.year <= this.boundaryYear) this.labels.push(data.year);
     });
   },
-  mounted() {
+  async mounted() {
     // グラフ作成
-    const emptyDataset = [{ data: [], label: "" }];
-    this.drawChart(emptyDataset, this.labels);
+    console.log(this.datasets);
+    if (this.datasets) await this.drawChart(this.datasets, this.labels);
   },
   methods: {
     // 人口データの取得
