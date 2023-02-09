@@ -13,7 +13,7 @@ export default new Vuex.Store({
       return state.prefectures;
     },
     getSelectPrefecture(state) {
-      return state.setPrefecture;
+      return state.selectPrefectures;
     },
   },
   mutations: {

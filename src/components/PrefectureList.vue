@@ -9,7 +9,7 @@
             type="checkbox"
             :id="`prefecture-${prefecture.prefCode}`"
             v-model="selectPrefectures"
-            :value="prefecture.prefCode"
+            :value="prefecture"
           />
           {{ prefecture.prefName }}
         </label>
@@ -33,7 +33,7 @@ export default {
   },
   watch: {
     selectPrefectures() {
-      this.$store.commit("setPrefecture", this.selectPrefectures);
+      this.$store.commit("setSelectPrefecture", this.selectPrefectures);
     },
   },
 };
