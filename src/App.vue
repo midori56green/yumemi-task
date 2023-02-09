@@ -9,7 +9,7 @@
       :labels="labels"
       :datasets="datasets"
     />
-    <PrefectureList />
+    <prefecture-list />
   </div>
 </template>
 

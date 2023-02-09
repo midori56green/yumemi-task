@@ -1,33 +1,28 @@
 <template>
-  <canvas id="populationGraph" width="300" height="200"></canvas>
+  <div>
+    <canvas id="populationGraph" width="300" height="200"></canvas>
+    <line-chart v-if="datacollection" :chart-data="datacollection"></line-chart>
+  </div>
 </template>
 
 <script>
+import LineChart from "./LineChart.js";
 import Chart from "chart.js/auto";
 export default {
-  name: "ChartGraph",
-  props: ["labels", "datasets"],
   data() {
     return {
-      selectPrefectures: [
-        {
-          prefName: "北海道",
-          prefCode: 1,
-          backgroundColor: "#00ff00",
-        },
-        {
-          prefName: "青森",
-          prefCode: 2,
-        },
-        {
-          prefName: "岩手",
-          prefCode: 3,
-        },
-      ],
+      datacollection: null,
     };
   },
-  async created() {},
+  components: {
+    LineChart,
+  },
+  name: "ChartGraph",
+  props: ["labels", "datasets"],
   async mounted() {
+    //
+    this.fillData();
+
     // グラフ作成
     new Chart("populationGraph", {
       type: "line",
@@ -60,6 +55,28 @@ export default {
         },
       },
     });
+  },
+  methods: {
+    fillData() {
+      this.datacollection = {
+        labels: [this.getRandomInt(), this.getRandomInt()],
+        datasets: [
+          {
+            label: "data one",
+            backgroundColor: "#00ff00",
+            data: [this.getRandomInt(), this.getRandomInt()],
+          },
+          {
+            label: "data two",
+            backgroundColor: "#ff00ff",
+            data: [this.getRandomInt(), this.getRandomInt()],
+          },
+        ],
+      };
+    },
+    getRandomInt() {
+      return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
+    },
   },
 };
 </script>
