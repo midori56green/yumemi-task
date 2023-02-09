@@ -1,5 +1,6 @@
 <template>
   <canvas
+    v-if="datasets"
     id="populationGraph"
     width="300"
     height="200"
@@ -46,39 +47,10 @@ export default {
       if (data.year <= this.boundaryYear) this.labels.push(data.year);
     });
   },
-  mounted() {
+  async mounted() {
     // グラフ作成
-    new Chart("populationGraph", {
-      type: "line",
-      data: {
-        labels: this.labels,
-        // datasets: [
-        //   {
-        //     data: [485, 414, 71, 105],
-        //     label: "apple",
-        //     backgroundColor: ["#F50057"],
-        //   },
-        //   {
-        //     data: [20, 50, 200, 400],
-        //     label: "banana",
-        //     backgroundColor: ["#0f0"],
-        //   },
-        // ],
-        datasets: this.datasets,
-        min: 0,
-        max: 100,
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: true,
-            position: "bottom",
-            labelString: "apple",
-          },
-        },
-      },
-    });
+    console.log(this.datasets);
+    if (this.datasets) await this.drawChart(this.datasets, this.labels);
   },
   methods: {
     // 人口データの取得
@@ -104,6 +76,40 @@ export default {
         });
       });
       // console.log(this.datasets);
+    },
+    // グラフの描画
+    drawChart(datasets, labels) {
+      new Chart("populationGraph", {
+        type: "line",
+        data: {
+          labels: labels,
+          // datasets: [
+          //   {
+          //     data: [485, 414, 71, 105],
+          //     label: "apple",
+          //     backgroundColor: ["#F50057"],
+          //   },
+          //   {
+          //     data: [20, 50, 200, 400],
+          //     label: "banana",
+          //     backgroundColor: ["#0f0"],
+          //   },
+          // ],
+          datasets: datasets,
+          min: 0,
+          max: 100,
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              position: "bottom",
+              labelString: "apple",
+            },
+          },
+        },
+      });
     },
   },
 };
