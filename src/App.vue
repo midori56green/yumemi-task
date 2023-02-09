@@ -3,6 +3,7 @@
     <h1>Title</h1>
     <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
     <!-- <PopulationGraph msg="Welcome to Your Vue.js App" /> -->
+    <random-chart />
     <ChartGraph />
     <PrefectureList />
   </div>
@@ -11,6 +12,7 @@
 <script>
 import PrefectureList from "./components/PrefectureList.vue";
 import ChartGraph from "./components/ChartGraph.vue";
+import RandomChart from "./components/RandomChart.vue";
 
 export default {
   data() {
@@ -20,6 +22,7 @@ export default {
   components: {
     PrefectureList,
     ChartGraph,
+    RandomChart,
   },
   async created() {},
 };
