@@ -1,6 +1,6 @@
 <template>
   <canvas
-    id="locationGraph"
+    id="populationGraph"
     width="300"
     height="200"
     class="ma-3 pa-3 grey lighten-5"
@@ -14,9 +14,23 @@ export default {
   name: "ChartGraph",
   data() {
     return {
-      selectPrefectures: [1, 3, 5],
+      selectPrefectures: [
+        {
+          prefName: "北海道",
+          prefCode: 1,
+        },
+        {
+          prefName: "青森",
+          prefCode: 2,
+        },
+        {
+          prefName: "岩手",
+          prefCode: 3,
+        },
+      ],
       labels: [],
       datasets: [],
+      boundaryYear: 0,
     };
   },
   async created() {
@@ -28,12 +42,13 @@ export default {
       "v1/population/composition/perYear?cityCode=-&prefCode=1"
     );
     populationJson.data[0].data.forEach((data) => {
-      this.labels.push(data.year);
+      // 境界年以前の年代を取得
+      if (data.year <= this.boundaryYear) this.labels.push(data.year);
     });
   },
   mounted() {
     // グラフ作成
-    new Chart("locationGraph", {
+    new Chart("populationGraph", {
       type: "line",
       data: {
         labels: this.labels,
@@ -68,18 +83,27 @@ export default {
   methods: {
     // 人口データの取得
     async getPopulationJson() {
-      this.selectPrefectures.forEach(async (prefecture) => {
+      this.selectPrefectures.forEach(async (prefDate) => {
         const populationData = await getApi(
-          `v1/population/composition/perYear?cityCode=-&prefCode=${prefecture}`
+          `v1/population/composition/perYear?cityCode=-&prefCode=${prefDate.prefCode}`
         );
+
+        // 境界年の取得
+        if (this.boundaryYear === 0) {
+          this.boundaryYear = populationData.boundaryYear;
+        }
+
         const popuationDataset = [];
         populationData.data[0].data.forEach((data) => {
-          popuationDataset.push(data.value);
+          // 境界年以前のデータを取得
+          if (data.year <= this.boundaryYear) popuationDataset.push(data.value);
         });
-        // console.log(popuationDataset);
-        this.datasets.push({ data: popuationDataset, label: "test" });
+        this.datasets.push({
+          data: popuationDataset,
+          label: prefDate.prefName,
+        });
       });
-      console.log(this.datasets);
+      // console.log(this.datasets);
     },
   },
 };
