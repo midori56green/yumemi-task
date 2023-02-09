@@ -26,6 +26,15 @@ export default {
 </script>
 
 <style>
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: #333;
+}
+li {
+  list-style: none;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -37,6 +46,7 @@ export default {
 ul {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
 }
 li {
   flex: auto;
@@ -44,6 +54,7 @@ li {
 }
 label {
   display: block;
+  padding: 10px 0;
   background: #ccc;
   cursor: pointer;
 }
