@@ -1,15 +1,16 @@
 <template>
   <div id="app">
-    <h1>Title</h1>
-    <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
-    <chart-graph
-      v-if="datasets.length > 0"
-      class="chart-graph"
-      :labels="labels"
-      :datasets="datasets"
-    />
+    <h1>都道府県別人口推移グラフ</h1>
     <prefecture-list />
+    <div class="chart-box">
+      <div v-if="datasets.length === 0">読み込み中</div>
+      <chart-graph
+        v-else
+        class="chart-graph"
+        :labels="labels"
+        :datasets="datasets"
+      />
+    </div>
   </div>
 </template>
 
@@ -17,7 +18,6 @@
 import { getApi } from "./common";
 import PrefectureList from "./components/PrefectureList.vue";
 import ChartGraph from "./components/ChartGraph.vue";
-// import RandomChart from "./components/RandomChart.vue";
 
 export default {
   data() {
@@ -34,7 +34,6 @@ export default {
   components: {
     PrefectureList,
     ChartGraph,
-    // RandomChart,
   },
   async created() {
     // ラベルデータの取得
@@ -103,30 +102,37 @@ export default {
   box-sizing: border-box;
   color: #333;
 }
-li {
-  list-style: none;
+h2 {
+  margin-bottom: 20px;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin: 20px;
 }
-ul {
+/* list-box */
+.list-box {
+  background: #ccc;
+  padding: 20px;
+}
+.list-box ul {
   display: flex;
   flex-wrap: wrap;
+  gap: 10px;
   justify-content: flex-start;
 }
-li {
+.list-box li {
   flex: auto;
-  width: calc(100% / 3);
+  width: 5em;
+  list-style: none;
 }
-label {
+.list-box label {
   display: block;
   padding: 10px 0;
-  background: #ccc;
+  border-radius: 5px;
+  background: #eee;
   cursor: pointer;
 }
 label:hover {
@@ -135,8 +141,12 @@ label:hover {
 label:has(input:checked) {
   background: skyblue;
 }
-.chart-graph {
-  max-width: 500px;
-  max-height: 500px;
+/* chart-box */
+.chart-box {
+  max-width: 800px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  margin: 30px auto 0;
 }
 </style>

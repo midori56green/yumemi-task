@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="list-box">
     <h2>都道府県一覧</h2>
     <ul>
       <li v-if="prefectures.length === 0">読み込み中</li>
