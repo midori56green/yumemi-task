@@ -3,6 +3,7 @@
     <h1>都道府県別人口推移グラフ</h1>
     <prefecture-list />
     <div class="chart-box">
+      <h2>人口推移</h2>
       <div v-if="datasets.length === 0">読み込み中</div>
       <chart-graph
         v-else
@@ -102,6 +103,9 @@ export default {
   box-sizing: border-box;
   color: #333;
 }
+h1 {
+  margin: 30px 0;
+}
 h2 {
   margin-bottom: 20px;
 }
@@ -114,8 +118,9 @@ h2 {
 }
 /* list-box */
 .list-box {
-  background: #ccc;
+  background: #dcdcdc;
   padding: 20px;
+  border-radius: 8px;
 }
 .list-box ul {
   display: flex;
@@ -132,13 +137,14 @@ h2 {
   display: block;
   padding: 10px 0;
   border-radius: 5px;
-  background: #eee;
+  background: #fff;
   cursor: pointer;
 }
 label:hover {
   background: #999;
 }
 label:has(input:checked) {
+  font-weight: bold;
   background: skyblue;
 }
 /* chart-box */
